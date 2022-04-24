@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
 @Parcelize
 @Entity(tableName = "persons_table") class PersonModel (
@@ -16,4 +17,4 @@ import kotlinx.android.parcel.Parcelize
     var shortPhone: String = "",
     var status: String = "",
     var address: String = ""
-): Parcelable
+): Parcelable, Serializable

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.project.contactskotlin.R
 import com.project.contactskotlin.model.PersonModel
+import com.project.contactskotlin.screen.start.StartFragment
 import kotlinx.android.synthetic.main.person_view.view.*
 
 class PersonAdapter : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
@@ -21,7 +22,9 @@ class PersonAdapter : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
-        //holder.itemView.item_name = items[position].name
+        holder.itemView.person_lastname.text = items[position].lastname
+        holder.itemView.person_name.text = items[position].name
+        holder.itemView.person_status.text = items[position].status
     }
 
     override fun getItemCount(): Int {
@@ -31,6 +34,20 @@ class PersonAdapter : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
     @SuppressLint("NotifyDataSetChanged")
     fun setList(list: List<PersonModel>) {
         items = list
+        // Подписываемся на изменения бд
         notifyDataSetChanged()
+    }
+
+
+    override fun onViewAttachedToWindow(holder: PersonViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.itemView.setOnClickListener{
+            StartFragment.selectView(items[holder.adapterPosition])
+        }
+    }
+
+
+    override fun onViewDetachedFromWindow(holder: PersonViewHolder) {
+        holder.itemView.setOnClickListener(null)
     }
 }

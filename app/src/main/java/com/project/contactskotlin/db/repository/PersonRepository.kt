@@ -9,4 +9,6 @@ interface PersonRepository {
     suspend fun insert(personModel: PersonModel, onSuccess: () -> Unit)
 
     suspend fun delete(personModel: PersonModel, onSuccess: () -> Unit)
+
+    suspend fun update(personModel: PersonModel, onSuccess: () -> Unit)
 }

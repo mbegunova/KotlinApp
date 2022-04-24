@@ -17,4 +17,9 @@ class PersonRealization(private val personDao: PersonDao) : PersonRepository {
         personDao.deletePerson(personModel)
         onSuccess()
     }
+
+    override suspend fun update(personModel: PersonModel, onSuccess: () -> Unit) {
+        personDao.updatePerson(personModel)
+        onSuccess()
+    }
 }
