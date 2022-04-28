@@ -46,9 +46,6 @@ class NewPersonFragment : Fragment() {
 
         val viewModel = ViewModelProvider(this).get(NewPersonViewModel::class.java)
 
-        binding.btnBack.setOnClickListener {
-            APP.navController.navigate(R.id.action_newPersonFragment_to_startFragment)
-        }
 
         binding.btnAdd.setOnClickListener {
 
@@ -60,7 +57,7 @@ class NewPersonFragment : Fragment() {
             val etStatus = binding.etStatus.text.toString()
             val etAddress = binding.etAddress.text.toString()
 
-            if (validateName(etName) && validateName(etLastname) && validatePhone(etPhone)) {
+            if (!validateName(etName) || !validateName(etLastname) || !validatePhone(etPhone)) {
                 Toast.makeText(
                     activity,
                     "Фамилия, имя и номер не могут быть пустыми",

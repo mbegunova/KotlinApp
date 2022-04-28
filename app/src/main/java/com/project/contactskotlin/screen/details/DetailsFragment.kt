@@ -70,9 +70,6 @@ class DetailsFragment : Fragment() {
             Toast.LENGTH_LONG
         ).show()
 
-        binding.btnBack.setOnClickListener {
-            APP.navController.navigate(R.id.action_detailsFragment_to_startFragment)
-        }
 
         binding.edit.setOnClickListener {
             enableFields()
